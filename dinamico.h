@@ -1,5 +1,6 @@
 #ifndef DINAMICO_H
 #define DINAMICO_H
+
 #include <iostream>
 using namespace std;
 
@@ -11,6 +12,7 @@ class Dinamico
 	size_t tam;
 	size_t cont;
 	const static size_t MAX=5;
+	
 	public:
 		Dinamico();
 	   ~Dinamico();
@@ -22,11 +24,22 @@ class Dinamico
 	   void eliminar_inicio();
 	   void eliminar (size_t p);
 	   
+	   T*buscar(const T&f);
+	   Dinamico<T*> buscar_todos(const T& f);
+	   
 	   size_t size();
-	   int operator[](size_t o)
+	   T operator[](size_t p)
 	   {
-	   	return dinamico[o];
+	   	return dinamico[p];
 	   }
+	   
+	   friend Dinamico<T>& operator <<(Dinamico<T> &a, const T& f)
+	   {
+	   	a.insertar_final(f);
+	   	
+	   	return a;
+	   }
+	   
 	private:
 		void expandir();
 };
@@ -140,6 +153,32 @@ void Dinamico<T>::expandir(){
 	dinamico=nuevo;
 	tam= tam+MAX;
 	
+}
+
+template <class T>
+T* Dinamico<T>::buscar(const T& v)
+{
+    for (size_t i = 0; i < cont; i++) {
+        if (v == dinamico[i]) {
+            return &dinamico[i];
+        }
+    }
+    return nullptr;
+}
+
+template <class T>
+Dinamico<T*> Dinamico<T>::buscar_todos(const T& f)
+{
+    Dinamico<T*> ptrs;
+
+    for (size_t i = 0; i < cont; i++) {
+        if (f == dinamico[i]) {
+            ptrs.insertar_final(&dinamico[i]);
+        }
+    }
+
+    return ptrs;
+
 }
 
 
