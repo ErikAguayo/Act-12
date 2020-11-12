@@ -1,42 +1,36 @@
 #include <iostream>
 
-#include "computadora.h"
-#include "dinamico.h" 
+#include "computadora.cpp"
+#include "algoritmo.h" 
 
 using namespace std;
 
 int main()
 {
-  Dinamico<Computadora> computadoras;
+  Computadora arr[] = {
+  	
+  Computadora("Windows", "PC_UNO", 8, 1500),
   
-  Computadora pc01("Windows", "PC_UNO", 8, 1500);
-  
-  Computadora pc02("Windows", "Erik", 16, 250);
+  Computadora("Windows", "Erik", 16, 250),
  
-  Computadora pc03("Ubuntu", "Paulo", 32, 300);
+  Computadora("Ubuntu", "Paulo", 32, 300),
   
-  Computadora pc04("Windows", "Erik", 16, 250);
-   
-  Computadora pc05("MAC", "Rosa", 2, 1000);
+  };
   
-  computadoras << pc01 << pc02 << pc03 << pc04 << pc05;
+  burbuja(arr);
   
   
-  Dinamico<Computadora*> ptrs = computadoras.buscar_todos(pc01);
   
 
   
-  cout << pc02;
-  if (ptrs.size() > 0) {
-       for (size_t i = 0; i < ptrs.size(); i++)
-        {
-           Computadora *p = ptrs[i];
-            cout << *p << endl;
-        }
-    }
-    else {
-        cout << "No existen coincidencias" << endl;
-    }
+ 
+ 
+  
+  //Dinamico<Computadora*> ptrs = computadoras.buscar_todos(pc01);
+  
+
+  
+  
  	
 	
 //	Dinamico<int> dinamico;

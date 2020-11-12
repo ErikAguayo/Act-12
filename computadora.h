@@ -67,6 +67,22 @@ public:
 	{
 		return sistema == p.sistema;
 	}	
+	bool operator>(const Computadora &p)
+	{
+		return sistema > p.sistema;
+	}
+	bool operator>(const Computadora &p) const
+	{
+		return sistema > p.sistema;
+	}
+	bool operator<(const Computadora &p)
+	{
+		return sistema > p.sistema;
+	}
+	bool operator<(const Computadora &p)const
+	{
+		return sistema < p.sistema;
+	}
 	
 };
 
